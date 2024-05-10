@@ -8,9 +8,24 @@ int sum(int n) {
         return 0;  
     }
 }
+void rev() {
+    char ch;
+    cin.get(ch);  // Read a character from input
+
+    if (ch != '\n') {
+        rev();  // Recursively call rev() until newline is encountered
+
+        // Print character after recursive call to reverse the order
+        cout << ch;
+    }
+}
 
 int main()
 {
-    int n; cin>>n; cout<<sum(n);
+    int n; cin>>n; cout<<sum(n)<<endl;
+
+    // reverse charecter
+    cin.ignore();
+    rev();
     return 0;
 }
