@@ -4,6 +4,7 @@
 struct node *createLS(int arr[], int size);
 int searchItem(struct node *head, int item); // Function declaration
 void revLS(struct node *head);
+void printLS(struct node *head);
 
 struct node
 {
@@ -15,53 +16,59 @@ int main()
 {
     int a[] = {2, 3, 4, 1, 10};
     struct node *head;
-    head = createLS(a, 5); //function call for traverse
+    head = createLS(a, 5); // function call for traverse
 
-    struct node *current =head;
-   
+    printLS(head);
 
-    while (current != NULL)
-    {
-        /* code */ printf("-> %d ", current->data);
-        current = current->next;
-    }
-    
-    printf("\n\nIndex : %d\n",searchItem(head,1)); //function call for search item
-   
-//  struct node *newHead=head;
+    printf("\n\nIndex : %d\n", searchItem(head, 1)); // function call for search item
+
+    //  struct node *newHead=head;
     revLS(head);
 
     return 0;
 }
 
-void revLS(struct node *head){
-  struct node *prev=NULL, *current=head, *next=NULL;
-  while (current!=NULL)
-  {
-     next = current->next; //sotre the next node
-     current->next=prev; //reverse the link
-     prev=current;
-     current=next;
-  }
-  head=prev;
+void printLS(struct node *head)
+{
+    struct node *current = head;
+    while (current != NULL)
+    {
+        /* code */ printf("-> %d ", current->data);
+        current = current->next;
+    }
+}
 
-  while (head != NULL)
+void revLS(struct node *head)
+{
+    struct node *prev = NULL, *current = head, *next = NULL;
+    while (current != NULL)
+    {
+        next = current->next; // sotre the next node
+        current->next = prev; // reverse the link
+        prev = current;
+        current = next;
+    }
+    head = prev;
+
+    while (head != NULL)
     {
         /* code */ printf("-> %d ", head->data);
         head = head->next;
     }
 }
 
-int searchItem(struct node *head,int item){
-    int index =0;
-    while (head !=NULL)
+int searchItem(struct node *head, int item)
+{
+    int index = 0;
+    while (head != NULL)
     {
-        if (head ->data ==item)
+        if (head->data == item)
         {
             return ++index;
         }
-        else {
-            head=head->next;
+        else
+        {
+            head = head->next;
             index++;
         }
     }
