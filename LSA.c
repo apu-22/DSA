@@ -5,6 +5,7 @@ struct node *createLS(int arr[], int size);
 int searchItem(struct node *head, int item); // Function declaration
 void revLS(struct node *head);
 void printLS(struct node *head);
+void insertBE(struct node *head, int newdata);
 
 struct node
 {
@@ -23,9 +24,23 @@ int main()
     printf("\n\nIndex : %d\n", searchItem(head, 1)); // function call for search item
 
     //  struct node *newHead=head;
+    insertBE(head, 15);
     revLS(head);
 
     return 0;
+}
+
+void insertBE(struct node *head, int newdata)
+{
+    struct node *temp = (struct node *)malloc(sizeof(struct node));
+    temp->data = newdata;
+    temp->next = head;
+
+    struct node *newHead = temp;
+    struct node *current = newHead;
+    newHead = temp;
+
+    printLS(newHead);
 }
 
 void printLS(struct node *head)
@@ -36,6 +51,7 @@ void printLS(struct node *head)
         /* code */ printf("-> %d ", current->data);
         current = current->next;
     }
+    printf("\n\n");
 }
 
 void revLS(struct node *head)
