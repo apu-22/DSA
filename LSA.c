@@ -2,6 +2,7 @@
 #include <stdlib.h>
 
 struct node *createLS(int arr[], int size);
+struct node *delete(struct node *head, int item);
 int searchItem(struct node *head, int item); // Function declaration
 void revLS(struct node *head);
 void printLS(struct node *head);
@@ -21,18 +22,44 @@ int main()
     struct node *head;
     head = createLS(a, 5); // function call for traverse
 
-    printLS(head);
+    printLS(head); // print linked list
 
-    printf("\n\nIndex : %d\n", searchItem(head, 1)); // function call for search item
+    // printf("\n\nIndex : %d\n", searchItem(head, 1)); // function call for search item
 
     // struct node *newHead = head;
-    
-    insertBE(head, 15);
-    insertED(head, 15);
-    insertMD(head, 4, 22);
-    revLS(head);
+
+    insertBE(head, 15);    // insert item beginnign at the list
+    insertED(head, 15);    // insert item end at the list
+    insertMD(head, 4, 22); // insert item middle at the list
+
+    struct node *newnode = delete (head, 10); // delation
+    printLS(newnode);                         // after delation pring linked list
+
+    revLS(head); // revarse linked list
 
     return 0;
+}
+
+struct node *delete(struct node *head, int item)
+{
+    struct node *dummyHead = (struct node *)malloc(sizeof(struct node));
+    dummyHead->next = head;
+    struct node *temp = dummyHead;
+    while (temp->next != NULL)
+    {
+        if (temp->next->data == item)
+        {
+            struct node *toBeDeleted = temp->next;
+            temp->next = toBeDeleted->next;
+            free(toBeDeleted); // Free memory of the deleted node
+            break;
+        }
+        temp = temp->next;
+    }
+
+    struct node *newHead = dummyHead->next;
+    free(dummyHead); // Free memory of the dummy node
+    return newHead;
 }
 
 void insertMD(struct node *head, int position, int newdata)
