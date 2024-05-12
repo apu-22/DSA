@@ -3,6 +3,7 @@
 
 struct node *createLS(int arr[], int size);
 int searchItem(struct node *head, int item); // Function declaration
+void revLS(struct node *head);
 
 struct node
 {
@@ -17,6 +18,7 @@ int main()
     head = createLS(a, 5); //function call for traverse
 
     struct node *current =head;
+   
 
     while (current != NULL)
     {
@@ -25,8 +27,29 @@ int main()
     }
     
     printf("\n\nIndex : %d\n",searchItem(head,1)); //function call for search item
+   
+//  struct node *newHead=head;
+    revLS(head);
 
     return 0;
+}
+
+void revLS(struct node *head){
+  struct node *prev=NULL, *current=head, *next=NULL;
+  while (current!=NULL)
+  {
+     next = current->next; //sotre the next node
+     current->next=prev; //reverse the link
+     prev=current;
+     current=next;
+  }
+  head=prev;
+
+  while (head != NULL)
+    {
+        /* code */ printf("-> %d ", head->data);
+        head = head->next;
+    }
 }
 
 int searchItem(struct node *head,int item){
