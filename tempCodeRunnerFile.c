@@ -1,1 +1,1 @@
-insertBE(head, 15);
+printf("\n\nIndex : %d\n", searchItem(head, 1));

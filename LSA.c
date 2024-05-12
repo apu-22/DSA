@@ -7,6 +7,7 @@ void revLS(struct node *head);
 void printLS(struct node *head);
 void insertBE(struct node *head, int newdata);
 void insertED(struct node *head, int newdata);
+void insertMD(struct node *head, int position, int newdata);
 
 struct node
 {
@@ -24,18 +25,39 @@ int main()
 
     printf("\n\nIndex : %d\n", searchItem(head, 1)); // function call for search item
 
-     struct node *newHead=head;
+    // struct node *newHead = head;
+    
     insertBE(head, 15);
-    insertED(head,15);
+    insertED(head, 15);
+    insertMD(head, 4, 22);
     revLS(head);
 
     return 0;
 }
 
+void insertMD(struct node *head, int position, int newdata)
+{
+    struct node *current = head;
+    int count = 0;
+    while (current != NULL)
+    {
+        count++;
+        if (count == position)
+        {
+            struct node *newnode = (struct node *)malloc(sizeof(struct node));
+            newnode->data = newdata;
+            newnode->next = current->next;
+            current->next = newnode;
+        }
+        current = current->next;
+    }
+    printLS(head);
+}
+
 void insertBE(struct node *head, int newdata)
 {
     struct node *temp = (struct node *)malloc(sizeof(struct node));
-    
+
     temp->data = newdata;
     temp->next = head;
 
@@ -46,26 +68,26 @@ void insertBE(struct node *head, int newdata)
     printLS(newHead);
 }
 
-void insertED(struct node *head, int newdata){
-  struct node *current=head;
-  while (current->next != NULL)
-  {
-    current=current->next;
-  }
-  
-   struct node *temp = (struct node *)malloc(sizeof(struct node));
-    if (temp == NULL) {
+void insertED(struct node *head, int newdata)
+{
+    struct node *current = head;
+    while (current->next != NULL)
+    {
+        current = current->next;
+    }
+
+    struct node *temp = (struct node *)malloc(sizeof(struct node));
+    if (temp == NULL)
+    {
         printf("Memory allocation failed\n");
         return;
     }
     temp->data = newdata;
     temp->next = NULL;
 
-    current->next=temp;
+    current->next = temp;
     printLS(head);
-
 }
-
 
 void printLS(struct node *head)
 {
