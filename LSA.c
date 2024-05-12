@@ -2,6 +2,7 @@
 #include <stdlib.h>
 
 struct node *createLS(int arr[], int size);
+int searchItem(struct node *head, int item); // Function declaration
 
 struct node
 {
@@ -13,7 +14,7 @@ int main()
 {
     int a[] = {2, 3, 4, 1, 10};
     struct node *head;
-    head = createLS(a, 5);
+    head = createLS(a, 5); //function call for traverse
 
     struct node *current =head;
 
@@ -22,9 +23,27 @@ int main()
         /* code */ printf("-> %d ", current->data);
         current = current->next;
     }
+    
+    printf("\n\nIndex : %d\n",searchItem(head,1)); //function call for search item
+
     return 0;
 }
 
+int searchItem(struct node *head,int item){
+    int index =0;
+    while (head !=NULL)
+    {
+        if (head ->data ==item)
+        {
+            return ++index;
+        }
+        else {
+            head=head->next;
+            index++;
+        }
+    }
+    return -1;
+}
 struct node *createLS(int arr[], int size)
 {
     struct node *head = NULL, *temp = NULL, *current = NULL;
