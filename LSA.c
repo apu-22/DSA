@@ -15,10 +15,12 @@ int main()
     struct node *head;
     head = createLS(a, 5);
 
-    while (head != NULL)
+    struct node *current =head;
+
+    while (current != NULL)
     {
-        /* code */ printf("-> %d ", head->data);
-        head = head->next;
+        /* code */ printf("-> %d ", current->data);
+        current = current->next;
     }
     return 0;
 }
