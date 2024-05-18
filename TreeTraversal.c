@@ -49,30 +49,39 @@ struct node *createNode(int value)
     return newNode;
 }
 
-struct node *insertLeft(struct node *root, int value)
-{
-    root->left = createNode(value);
-    return root->left;
-}
+// struct node *insertLeft(struct node *root, int value)
+// {
+//     root->left = createNode(value);
+//     return root->left;
+// }
 
-struct node *insertRight(struct node *root, int value)
-{
-    root->right = createNode(value);
-    return root->right;
-}
+// struct node *insertRight(struct node *root, int value)
+// {
+//     root->right = createNode(value);
+//     return root->right;
+// }
 
 int main()
 {
     struct node *root = createNode(1);
 
-    insertLeft(root, 5);
-    insertRight(root, 2);
+    // insertLeft(root, 5);
+    // insertRight(root, 2);
 
-    insertLeft(root->left, 4);
-    insertRight(root->left, 9);
+    // insertLeft(root->left, 4);
+    // insertRight(root->left, 9);
 
-    insertLeft(root->right, 15);
-    insertRight(root->right, 11);
+    // insertLeft(root->right, 15);
+    // insertRight(root->right, 11);
+
+    root->left = createNode(3);
+    root->right = createNode(5);
+
+    root->left->left = createNode(7);
+    root->left->right = createNode(9);
+
+    root->right->left = createNode(0);
+    root->right->right = createNode(6);
 
     printf("Inorder Traversal: \n");
     inorderTraversal(root);
