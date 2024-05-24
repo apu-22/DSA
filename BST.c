@@ -18,6 +18,14 @@ struct Node *newNode(int key)
     return node;
 }
 
+int sumBST(struct Node *root)
+{
+    if (root == NULL)
+        return 0;
+
+    return root->key + sumBST(root->left) + sumBST(root->right);
+}
+
 bool search(struct Node *root, int key)
 {
     if (root == NULL || root->key == key)
@@ -74,6 +82,9 @@ int main()
     {
         printf("%d not found in the BST\n", key);
     }
+
+    int sum = sumBST(root);
+    printf("SUM is: %d\n", sum);
 
     return 0;
 }
