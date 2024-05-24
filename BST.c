@@ -18,7 +18,6 @@ struct Node *newNode(int key)
     return node;
 }
 
-
 bool search(struct Node *root, int key)
 {
     if (root == NULL || root->key == key)
@@ -29,16 +28,33 @@ bool search(struct Node *root, int key)
     return search(root->left, key);
 }
 
+struct Node *insert(struct Node *root, int item)
+{
+    if (root == NULL)
+        return newNode(item);
+
+    if (item < root->key)
+    {
+        root->left = insert(root->left, item);
+    }
+    if (item > root->key)
+    {
+        root->right = insert(root->right, item);
+    }
+
+    return root;
+}
+
 int main()
 {
     struct Node *root = NULL;
     root = newNode(8);
-    root->left = newNode(3);
-    root->right = newNode(10);
-    root->left->left = newNode(1);
-    root->left->right = newNode(6);
-    root->right->left = newNode(9);
-    root->left->right->left = newNode(4);
+    insert(root, 9);
+    insert(root, 18);
+    insert(root, 3);
+    insert(root, 23);
+    insert(root, 6);
+    insert(root, 25);
 
     int key = 4;
     // struct Node *result = search(root, key);
@@ -49,8 +65,8 @@ int main()
     // {
     //     printf("%d not found in the BST\n", key);
     // }
-    
-    if (search(root,key))
+
+    if (search(root, key))
     {
         printf("Found %d in the BST\n", key);
     }
