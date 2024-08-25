@@ -6,7 +6,23 @@ void printt(set<int> &s)
 {
     for (int val : s)
     {
-        cout << val << " " ;
+        cout << val << " ";
+    }
+    cout<<"\n";
+}
+
+void find(set<int> &s)
+{
+    int num = 6;
+    auto it = s.find(num);
+
+    if (it != s.end())
+    {
+        cout << num << " exits" << "\n";
+    }
+    else
+    {
+        cout << num << " not exits" << "\n";
     }
 }
 
@@ -22,4 +38,6 @@ int main()
     s.insert(5);
 
     printt(s);
+
+    find(s);
 }
