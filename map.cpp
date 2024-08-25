@@ -1,5 +1,6 @@
 #include <iostream>
 #include <map>
+#include <unordered_map>
 
 using namespace std;
 
@@ -9,7 +10,7 @@ void delete_key(map<int, string> &student)
     auto it = student.find(3);
     if (it != student.end())
     {
-        student.erase(4);
+        student.erase(3);
     }
 }
 
@@ -58,4 +59,38 @@ int main()
     delete_key(student);
     find(student);
     print(student);
+
+    cout<<"\n";
+
+    // frequency calculate of an array
+    int n, value = INT_MIN;
+    cin >> n;
+    int a[n];
+    for (int i = 0; i < n; i++)
+    {
+        cin >> a[i];
+    }
+
+    // for (auto pr : a)
+    // {
+    //     cout <<pr << " ";
+    // }
+
+    unordered_map<int, int> freq;
+    // for (int i = 0; i < n; i++)
+    // {
+    //     freq[a[i]]++;
+    // }
+
+    for (int num : a)
+    {
+        freq[num]++;
+    }
+
+    // unordered_map<int, int>::iterator it;
+    for (const auto &pr : freq)
+    {
+        cout << pr.first << " :" << pr.second << "\n";
+        value = max(value, pr.second);
+    }
 }
