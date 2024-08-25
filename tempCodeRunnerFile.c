@@ -1,0 +1,1 @@
+printf("\n\nIndex : %d\n", searchItem(head, 1));
