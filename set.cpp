@@ -2,6 +2,14 @@
 
 using namespace std;
 
+void printt(set<int> &s)
+{
+    for (int val : s)
+    {
+        cout << val << " " ;
+    }
+}
+
 int main()
 {
     set<int> s;
@@ -13,8 +21,5 @@ int main()
     s.insert(2);
     s.insert(5);
 
-    for (int val : s)
-    {
-        cout << val << " " << "\n";
-    }
+    printt(s);
 }
