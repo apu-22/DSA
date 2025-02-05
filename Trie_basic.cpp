@@ -6,6 +6,7 @@ struct Trienode
     struct Trienode *children[26];
     bool isEndofWord;
     int childCnt;
+    int prefixCnt;
 };
 
 struct Trienode *getnode()
@@ -13,6 +14,7 @@ struct Trienode *getnode()
     struct Trienode *newnode = new Trienode;
     newnode->isEndofWord = false;
     newnode->childCnt = 0;
+    newnode->prefixCnt = 0;
 
     for (int i = 0; i < 26; i++)
     {
@@ -36,6 +38,7 @@ void insert(struct Trienode *root, string key)
         }
 
         current = current->children[index];
+        current->prefixCnt++;
     }
     current->isEndofWord = true;
 }
@@ -109,14 +112,30 @@ string LCP(struct Trienode *root)
     {
         for (int i = 0; i < 26; i++)
         {
-            if (current->children[i] != NULL){
-                prefix+=(char)(i+'a');
-                current=current->children[i];
+            if (current->children[i] != NULL)
+            {
+                prefix += (char)(i + 'a');
+                current = current->children[i];
                 break;
             }
         }
     }
     return prefix;
+}
+
+int countWordWithPrefix(struct Trienode *root, string prefix)
+{
+    struct Trienode *current = root;
+    for (char ch : prefix)
+    {
+        int index = ch - 'a';
+        if (current->children[index] == NULL)
+        {
+            return 0;
+        }
+        current = current->children[index];
+    }
+    return current->prefixCnt;
 }
 
 int main()
@@ -140,6 +159,9 @@ int main()
 
     cout << "\nThe common largest prefix is:\n";
     cout << LCP(root) << "\n";
+
+    cout<<"\nThe number of word is started with this 'code' word is: ";
+    cout<<countWordWithPrefix(root, "code")<<"\n";
 
     cout << "\nDeleting 'thanos' from Trie...\n";
     deleteWord(root, "coders");
