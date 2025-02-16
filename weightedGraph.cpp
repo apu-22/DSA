@@ -6,7 +6,7 @@ void weightedGraphMtrix(int nodes,int egdes){
     for(int i=0;i<nodes;i++){
         int u,v,w; cin>>u>>v>>w;
         graph[u][v]=w;
-        graph[v][u]=w;
+        // graph[v][u]=w;
     }
 
     for(int i=1;i<=nodes;i++){
@@ -22,7 +22,7 @@ void weightedGraphList(int nodes,int edges){
     for(int i=0;i<nodes;i++){
         int u,v,w; cin>>u>>v>>w;
         graph[u].push_back({v,w});
-        graph[v].push_back({u,w});
+        // graph[v].push_back({u,w});
     }
 
     for(int i=1;i<=nodes;i++){
