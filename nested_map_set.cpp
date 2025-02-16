@@ -1,7 +1,16 @@
 #include <bits/stdc++.h>
 using namespace std;
 
+void nst_map();
+void nst_map_set();
+
 int main()
+{
+    // nst_map();
+    nst_map_set();
+}
+
+void nst_map()
 {
     map<pair<string, string>, vector<int>> m;
     int n;
@@ -33,5 +42,38 @@ int main()
             cout << element << " ";
         }
         cout << "\n";
+    }
+}
+
+void nst_map_set()
+{
+    map<int, set<string>> mark_S;
+    int n;
+    cin >> n;
+    for (int i = 0; i < n; i++)
+    {
+        string name;
+        cin >> name;
+        int mrk;
+        cin >> mrk;
+
+        mark_S[mrk].insert(name);
+    }
+
+    auto cnt_it = --mark_S.end();
+    while (true)
+    {
+        auto &student_name = (*cnt_it).second;
+        int mark = (*cnt_it).first;
+
+        for (auto &student : student_name)
+        {
+            cout << student << "-> " << mark;
+        }
+        cout << "\n";
+
+        if (cnt_it == mark_S.end())
+            break;
+        cnt_it--;
     }
 }

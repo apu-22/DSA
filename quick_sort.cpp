@@ -1,20 +1,21 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-void quicksort(int a[], int l, int h);
+void quicksort(int a[], int low, int high);
 void printarray(int a[], int size);
+int partition(int a[], int low, int high);
 
 int main()
 {
-    int a[] = {10, 7, 9, 8, 3, 2, 15, 1};
+    int a[] = {5, 3, 2, 1, 4, 6, 8, 7};
     int n = sizeof(a) / sizeof(a[0]);
 
-    cout << "before sorting" << "\n";
+    cout << "\n before unsorted array : " << "\n";
     printarray(a, n);
 
     quicksort(a, 0, n - 1);
 
-    cout << "after sorting" << "\n";
+    cout << " after sorted array : " << "\n";
     printarray(a, n);
 
     return 0;
@@ -24,43 +25,43 @@ void printarray(int a[], int size)
 {
     for (int i = 0; i < size; i++)
         cout << a[i] << " ";
-    cout << "\n";
+    cout << "\n\n";
 }
 
-int partition(int a[], int l, int h)
+int partition(int a[], int low, int high)
 {
-    int pivot = a[l];
-    int i = l;
-    int j = h;
+    int pivot = a[low];
+    int left = low;
+    int right = high;
 
-    while (i < j)
+    while (left < right)
     {
-        while (a[i] <= pivot)
+        while (a[left] <= pivot)
         {
-            i++;
+            left++;
         }
-        while (a[j] > pivot)
+        while (a[right] > pivot)
         {
-            j--;
+            right--;
         }
 
-        if (i < j)
+        if (left < right)
         {
-            swap(a[i], a[j]);
+            swap(a[left], a[right]);
         }
     }
 
-    swap(a[l], a[j]);
-    return j;
+    swap(a[low], a[right]);
+    return right;
 }
 
-void quicksort(int a[], int l, int h)
+void quicksort(int a[], int low, int high)
 {
-    if (l < h)
+    if (low < high)
     {
-        int pvt_idx = partition(a, l, h);
+        int pvt_idx = partition(a, low, high);
 
-        quicksort(a, l, pvt_idx - 1);
-        quicksort(a, pvt_idx + 1, h);
+        quicksort(a, low, pvt_idx - 1);
+        quicksort(a, pvt_idx + 1, high);
     }
 }

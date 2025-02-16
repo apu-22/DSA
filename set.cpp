@@ -8,7 +8,7 @@ void printt(set<int> &s)
     {
         cout << val << " ";
     }
-    cout<<"\n";
+    cout << "\n";
 }
 
 void find(set<int> &s)
@@ -18,12 +18,28 @@ void find(set<int> &s)
 
     if (it != s.end())
     {
-        cout << num << " exits" << "\n";
+        cout << (*it) << " exits" << "\n";
     }
     else
     {
-        cout << num << " not exits" << "\n";
+        cout << (*it) << " not exits" << "\n";
     }
+}
+
+void delete_item(set<int> &s){
+    int num = 98;
+    auto it = s.find(num);
+
+    if (it != s.end())
+    {
+        s.erase(num);
+    }
+    else
+    {
+        cout << " not exits" << "\n";
+    }
+
+    s.erase(78);
 }
 
 int main()
@@ -40,4 +56,7 @@ int main()
     printt(s);
 
     find(s);
+
+    delete_item(s);
+     printt(s);
 }
