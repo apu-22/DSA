@@ -2,17 +2,18 @@
 using namespace std;
 
 vector<vector<int>> graph;
+vector<int>deg;
 
 void topological(int nodes)
 {
-    vector<int> deg(nodes, 0);
-    for (int i = 0; i < nodes; i++)
-    {
-        for (auto &neighbor : graph[i])
-        {
-            deg[neighbor]++;
-        }
-    }
+    // vector<int> deg(nodes, 0);
+    // for (int i = 0; i < nodes; i++)
+    // {
+    //     for (auto &neighbor : graph[i])
+    //     {
+    //         deg[neighbor]++;
+    //     }
+    // }
 
     queue<int> q;
 
@@ -56,12 +57,14 @@ int main()
     int nodes, edges;
     cin >> nodes >> edges;
     graph.resize(nodes);
+    deg.resize(nodes,0);
 
     for (int i = 0; i < edges; i++)
     {
         int u, v;
         cin >> u >> v;
         graph[u].push_back(v); // its work for only directed graph
+        deg[v]++;
     }
 
     topological(nodes);
