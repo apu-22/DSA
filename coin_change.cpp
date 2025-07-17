@@ -38,4 +38,18 @@ int main()
         }
     }
     cout << "the total number of ways is: " << mt[s][sum] << "\n";
+
+
+      // Better approach to solved this problem(optimized the space)
+
+    vector<int> dp(sum + 1, 0); // dp[j] =(no. of ways) 'j'টাকার জন্য কত উপায় আছে
+    dp[0] = 1;
+    for (int coin : c)
+    {
+        for (int j = coin; j <= sum; j++)
+        {
+            dp[j] += dp[j - coin];
+        }
+    }
+    cout << "The total no. of way is: " << dp[sum] << "\n";
 }
