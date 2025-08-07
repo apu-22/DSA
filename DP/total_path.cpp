@@ -21,11 +21,30 @@ int countPath(int n, int m)
     return dp[n - 1][m - 1];
 }
 
+int countPath_SO(int n, int m)
+{
+    vector<int> dp(m, 1);
+
+    for (int i = 1; i < n; i++)
+    {
+        for (int j = 1; j < m; j++)
+        {
+            dp[j] += dp[j - 1];
+        }
+    }
+    return dp[m - 1];
+}
+
 int main()
 {
     cout << "Enter the number of row and column\n";
     int n, m;
     cin >> n >> m;
 
-    cout << "The number of way path is: " << countPath(n, m);
+    cout << "The number of way path is: " << countPath(n, m)<<"\n\n";
+
+    // space optimized: use 1D Dp instead of 2D DP
+    cout << "The number of way path is: " << countPath_SO(n, m);
+
+    
 }
