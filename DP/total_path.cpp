@@ -35,16 +35,28 @@ int countPath_SO(int n, int m)
     return dp[m - 1];
 }
 
+int countPath_BA(int n, int k)
+{
+    int res = 1;
+    for (int i = 1; i <= k; i++)
+    {
+        res *= (n - k + i);
+        res /= i;
+    }
+    return res;
+}
+
 int main()
 {
     cout << "Enter the number of row and column\n";
     int n, m;
     cin >> n >> m;
 
-    cout << "The number of way path is: " << countPath(n, m)<<"\n\n";
+    cout << "The number of way path is: " << countPath(n, m) << "\n\n";
 
     // space optimized: use 1D Dp instead of 2D DP
-    cout << "The number of way path is: " << countPath_SO(n, m);
+    cout << "The number of way path is: " << countPath_SO(n, m) << "\n\n";
 
-    
+    // Better approach for large value of n&m (up to 10^6).
+    cout << "The number of way path is: " << countPath_BA(n + m - 2, n - 1);
 }
